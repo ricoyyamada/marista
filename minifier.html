@@ -1,129 +1,209 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Escape Room do Português</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
-        .container { max-width: 400px; margin: 40px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
-        h1, h2 { text-align: center; }
-        .question { margin-bottom: 18px; }
-        .options button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #0077cc;
-            border-radius: 4px;
-            background: #e6f0fa;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .options button:hover { background: #cde4f7; }
-        .hidden { display: none; }
-        .pista { color: #0077cc; font-weight: bold; }
-        .success { color: green; font-weight: bold; text-align: center; }
-        .error { color: red; font-weight: bold; text-align: center; }
-        .senha-input { width: 100px; font-size: 1.2em; text-align: center; margin: 10px auto; display: block;}
-    </style>
+  <meta charset="UTF-8">
+  <title>Escape Room - Quiz de Português 9º Ano</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f6f6f6; margin: 0; padding: 0; }
+    #container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px #ccc; }
+    h1 { color: #2e5d3b; }
+    .question { margin-bottom: 18px; }
+    .options label { display: block; margin-bottom: 8px; cursor: pointer; }
+    #nextBtn, #restartBtn { margin-top: 20px; padding: 10px 22px; background: #2e5d3b; color: #fff; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    #restartBtn { background: #c0392b; }
+    #result { font-size: 1.2em; font-weight: bold; color: #2e5d3b; margin-top: 20px; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Escape Room do Português</h1>
-        <div id="sala1" class="sala">
-            <h2>Sala 1</h2>
-            <div class="question">Qual das palavras abaixo é antônimo de “alegre”?</div>
-            <div class="options">
-                <button onclick="responder(1, 'a')">a) Contente</button>
-                <button onclick="responder(1, 'b')">b) Triste</button>
-                <button onclick="responder(1, 'c')">c) Feliz</button>
-                <button onclick="responder(1, 'd')">d) Animado</button>
-            </div>
-            <div id="pista1" class="pista hidden">Pista: A primeira letra da senha é <strong>T</strong>.</div>
-        </div>
-        <div id="sala2" class="sala hidden">
-            <h2>Sala 2</h2>
-            <div class="question">Qual frase está correta?</div>
-            <div class="options">
-                <button onclick="responder(2, 'a')">a) Eu vi ela ontem.</button>
-                <button onclick="responder(2, 'b')">b) Eu a vi ontem.</button>
-                <button onclick="responder(2, 'c')">c) Eu vi ela ontem à noite.</button>
-                <button onclick="responder(2, 'd')">d) Eu vi ela ontem de noite.</button>
-            </div>
-            <div id="pista2" class="pista hidden">Pista: A segunda letra da senha é <strong>A</strong>.</div>
-        </div>
-        <div id="sala3" class="sala hidden">
-            <h2>Sala 3</h2>
-            <div class="question">
-                Leia a frase:<br>
-                <em>"O menino saiu correndo porque estava atrasado para a escola."</em><br>
-                O motivo de o menino correr é:
-            </div>
-            <div class="options">
-                <button onclick="responder(3, 'a')">a) Ele gosta de correr</button>
-                <button onclick="responder(3, 'b')">b) Ele estava atrasado</button>
-                <button onclick="responder(3, 'c')">c) Ele brigou com alguém</button>
-                <button onclick="responder(3, 'd')">d) Ele viu um cachorro</button>
-            </div>
-            <div id="pista3" class="pista hidden">Pista: A terceira letra da senha é <strong>B</strong>.</div>
-        </div>
-        <div id="sala4" class="sala hidden">
-            <h2>Sala 4</h2>
-            <div class="question">Qual das palavras está escrita corretamente?</div>
-            <div class="options">
-                <button onclick="responder(4, 'a')">a) Exceção</button>
-                <button onclick="responder(4, 'b')">b) Exessão</button>
-                <button onclick="responder(4, 'c')">c) Eceção</button>
-                <button onclick="responder(4, 'd')">d) Excessão</button>
-            </div>
-            <div id="pista4" class="pista hidden">Pista: A última letra da senha é <strong>E</strong>.</div>
-        </div>
-        <div id="final" class="sala hidden">
-            <h2>Porta Final</h2>
-            <div>Digite a senha formada pelas pistas das salas anteriores:</div>
-            <input id="senha" class="senha-input" maxlength="4" placeholder="____">
-            <button onclick="verificarSenha()">Escapar!</button>
-            <div id="mensagemFinal"></div>
-        </div>
-    </div>
-    <script>
-        // Respostas corretas
-        const respostas = {
-            1: 'b',
-            2: 'b',
-            3: 'b',
-            4: 'a'
-        };
+  <div id="container">
+    <h1>Escape Room: Biblioteca Encantada</h1>
+    <div id="quiz"></div>
+    <button id="nextBtn" style="display:none;">Próxima</button>
+    <button id="restartBtn" style="display:none;">Reiniciar</button>
+    <div id="result"></div>
+  </div>
+  <script>
+    const questions = [
+      // Sala 1: Gramática
+      {
+        question: '1. Qual tempo verbal está em destaque? "Eu tinha estudado para a prova, mas esqueci tudo."',
+        options: ['Pretérito perfeito', 'Pretérito mais-que-perfeito', 'Futuro do presente'],
+        answer: 1
+      },
+      {
+        question: '2. "Livros incríveis" – a classificação morfológica de "incríveis" é:',
+        options: ['Advérbio', 'Adjetivo', 'Substantivo'],
+        answer: 1
+      },
+      {
+        question: '3. Identifique a oração subordinada adverbial: "Voltei cedo porque estava cansado."',
+        options: ['Final', 'Temporal', 'Causal'],
+        answer: 2
+      },
+      {
+        question: '4. Reescreva na voz passiva: "O poeta escreveu o soneto."',
+        options: [
+          'O soneto foi escrito pelo poeta.',
+          'O soneto é escrito pelo poeta.',
+          'O poeta foi escrito pelo soneto.'
+        ],
+        answer: 0
+      },
+      {
+        question: '5. Qual pontuação completa a frase? "Ana disse ___ Preciso estudar ___"',
+        options: [': —', ', ...', '; —'],
+        answer: 0
+      },
+      // Sala 2: Literatura
+      {
+        question: '6. Quem escreveu "Dom Casmurro"?',
+        options: ['Machado de Assis', 'José de Alencar', 'Carlos Drummond de Andrade'],
+        answer: 0
+      },
+      {
+        question: '7. O romance "Iracema" pertence a qual movimento literário?',
+        options: ['Romantismo', 'Realismo', 'Modernismo'],
+        answer: 0
+      },
+      {
+        question: '8. Complete o verso de Carlos Drummond: "No meio do caminho tinha uma pedra / Tinha uma pedra no meio do caminho..." (Quantas vezes "pedra" aparece?)',
+        options: ['2', '3', '4'],
+        answer: 1
+      },
+      {
+        question: '9. Qual característica define o Realismo?',
+        options: ['Idealização do amor', 'Crítica social', 'Fuga da realidade'],
+        answer: 1
+      },
+      {
+        question: '10. Quem é o autor de "Vidas Secas"?',
+        options: ['Jorge Amado', 'Graciliano Ramos', 'Manuel Bandeira'],
+        answer: 1
+      },
+      // Sala 3: Interpretação de Texto
+      {
+        question: '11. Qual é o tema central do texto: "O verão em Belém é úmido, mas o cheiro de açaí no Ver-o-Peso traz alívio..."?',
+        options: ['Cultura amazônica', 'Política local', 'Economia regional'],
+        answer: 0
+      },
+      {
+        question: '12. O que o trecho "herança dos indígenas" sugere?',
+        options: ['Influência histórica', 'Mudança climática', 'Festa popular'],
+        answer: 0
+      },
+      {
+        question: '13. Identifique uma linguagem figurada no texto ("cheiro de açaí traz alívio").',
+        options: ['Metáfora', 'Comparação', 'Eufemismo'],
+        answer: 0
+      },
+      // Sala 4: Ortografia
+      {
+        question: '14. Complete: "Ele ____ a mesa com cuidado."',
+        options: ['pôs', 'pos', 'pous'],
+        answer: 0
+      },
+      {
+        question: '15. Corrija: "A professora deu vários exemplos mas os alunos não prestaram atenção." (Qual palavra precisa de vírgula antes?)',
+        options: ['mas', 'deu', 'atenção'],
+        answer: 0
+      },
+      {
+        question: '16. Use o acento certo: "Ele bebeu cafeina demais."',
+        options: ['cafeina', 'cafeína', 'caféina'],
+        answer: 1
+      },
+      // Extras para completar 20 questões
+      {
+        question: '17. O plural de "cidadão" é:',
+        options: ['cidadões', 'cidadãos', 'cidadães'],
+        answer: 1
+      },
+      {
+        question: '18. Assinale a alternativa em que há erro de concordância:',
+        options: ['Os alunos trouxeram seus livros.', 'Fazem dois anos que estudo aqui.', 'Havia muitas pessoas na festa.'],
+        answer: 1
+      },
+      {
+        question: '19. Em "A menina correu rapidamente", "rapidamente" é:',
+        options: ['Verbo', 'Advérbio', 'Adjetivo'],
+        answer: 1
+      },
+      {
+        question: '20. Qual frase está correta?',
+        options: ['Fazem três meses que não chove.', 'Faz três meses que não chove.', 'Já se passaram três mêses que não chove.'],
+        answer: 1
+      },
+    ];
 
-        // Função de resposta
-        function responder(sala, resposta) {
-            if (resposta === respostas[sala]) {
-                document.getElementById('pista' + sala).classList.remove('hidden');
-                setTimeout(() => {
-                    document.getElementById('sala' + sala).classList.add('hidden');
-                    if (sala < 4) {
-                        document.getElementById('sala' + (sala + 1)).classList.remove('hidden');
-                    } else {
-                        document.getElementById('final').classList.remove('hidden');
-                    }
-                }, 1200);
-            } else {
-                alert('Resposta incorreta! Tente novamente.');
-            }
-        }
+    let currentQuestion = 0;
+    let correctAnswers = 0;
 
-        // Verificação da senha final
-        function verificarSenha() {
-            const senha = document.getElementById('senha').value.trim().toUpperCase();
-            const mensagem = document.getElementById('mensagemFinal');
-            if (senha === 'TABE') {
-                mensagem.innerHTML = '<div class="success">Parabéns! Você escapou da sala misteriosa do português! 🎉</div>';
-            } else {
-                mensagem.innerHTML = '<div class="error">Senha incorreta! Verifique as pistas e tente novamente.</div>';
-            }
+    function showQuestion() {
+      const quizDiv = document.getElementById('quiz');
+      const nextBtn = document.getElementById('nextBtn');
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = '';
+      if (currentQuestion < questions.length) {
+        const q = questions[currentQuestion];
+        let html = `<div class="question">${q.question}</div><div class="options">`;
+        q.options.forEach((opt, idx) => {
+          html += `<label><input type="radio" name="option" value="${idx}"> ${opt}</label>`;
+        });
+        html += '</div>';
+        quizDiv.innerHTML = html;
+        nextBtn.style.display = 'inline-block';
+        nextBtn.disabled = false;
+      } else {
+        showResult();
+      }
+    }
+
+    function checkAnswer() {
+      const options = document.getElementsByName('option');
+      let selected = -1;
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].checked) {
+          selected = parseInt(options[i].value);
+          break;
         }
-    </script>
+      }
+      if (selected === -1) {
+        alert('Selecione uma opção!');
+        return;
+      }
+      if (selected === questions[currentQuestion].answer) {
+        correctAnswers++;
+      }
+      currentQuestion++;
+      showQuestion();
+    }
+
+    function showResult() {
+      const quizDiv = document.getElementById('quiz');
+      const nextBtn = document.getElementById('nextBtn');
+      const restartBtn = document.getElementById('restartBtn');
+      const resultDiv = document.getElementById('result');
+      quizDiv.innerHTML = '';
+      nextBtn.style.display = 'none';
+      if (correctAnswers === questions.length) {
+        resultDiv.innerHTML = '🎉 Parabéns! Você escapou da Biblioteca Encantada e acertou todas as questões!';
+      } else {
+        resultDiv.innerHTML = `Você acertou ${correctAnswers} de ${questions.length}. <br> Tente novamente para escapar!`;
+      }
+      restartBtn.style.display = 'inline-block';
+    }
+
+    function restartGame() {
+      currentQuestion = 0;
+      correctAnswers = 0;
+      document.getElementById('restartBtn').style.display = 'none';
+      showQuestion();
+    }
+
+    document.getElementById('nextBtn').onclick = checkAnswer;
+    document.getElementById('restartBtn').onclick = restartGame;
+
+    showQuestion();
+  </script>
 </body>
 </html>
