@@ -32,9 +32,14 @@ header {
 }
 
 .marist-logo {
-  width: 80px;
+  width: 120px;
+  max-width: 90vw;
   display: block;
   margin: 0 auto 12px auto;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px #e0e0e0;
+  object-fit: contain;
 }
 
 h1 {
