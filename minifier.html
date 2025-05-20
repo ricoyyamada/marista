@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Escape Room do Português</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+        .container { max-width: 400px; margin: 40px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+        h1, h2 { text-align: center; }
+        .question { margin-bottom: 18px; }
+        .options button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #0077cc;
+            border-radius: 4px;
+            background: #e6f0fa;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options button:hover { background: #cde4f7; }
+        .hidden { display: none; }
+        .pista { color: #0077cc; font-weight: bold; }
+        .success { color: green; font-weight: bold; text-align: center; }
+        .error { color: red; font-weight: bold; text-align: center; }
+        .senha-input { width: 100px; font-size: 1.2em; text-align: center; margin: 10px auto; display: block;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Escape Room do Português</h1>
+        <div id="sala1" class="sala">
+            <h2>Sala 1</h2>
+            <div class="question">Qual das palavras abaixo é antônimo de “alegre”?</div>
+            <div class="options">
+                <button onclick="responder(1, 'a')">a) Contente</button>
+                <button onclick="responder(1, 'b')">b) Triste</button>
+                <button onclick="responder(1, 'c')">c) Feliz</button>
+                <button onclick="responder(1, 'd')">d) Animado</button>
+            </div>
+            <div id="pista1" class="pista hidden">Pista: A primeira letra da senha é <strong>T</strong>.</div>
+        </div>
+        <div id="sala2" class="sala hidden">
+            <h2>Sala 2</h2>
+            <div class="question">Qual frase está correta?</div>
+            <div class="options">
+                <button onclick="responder(2, 'a')">a) Eu vi ela ontem.</button>
+                <button onclick="responder(2, 'b')">b) Eu a vi ontem.</button>
+                <button onclick="responder(2, 'c')">c) Eu vi ela ontem à noite.</button>
+                <button onclick="responder(2, 'd')">d) Eu vi ela ontem de noite.</button>
+            </div>
+            <div id="pista2" class="pista hidden">Pista: A segunda letra da senha é <strong>A</strong>.</div>
+        </div>
+        <div id="sala3" class="sala hidden">
+            <h2>Sala 3</h2>
+            <div class="question">
+                Leia a frase:<br>
+                <em>"O menino saiu correndo porque estava atrasado para a escola."</em><br>
+                O motivo de o menino correr é:
+            </div>
+            <div class="options">
+                <button onclick="responder(3, 'a')">a) Ele gosta de correr</button>
+                <button onclick="responder(3, 'b')">b) Ele estava atrasado</button>
+                <button onclick="responder(3, 'c')">c) Ele brigou com alguém</button>
+                <button onclick="responder(3, 'd')">d) Ele viu um cachorro</button>
+            </div>
+            <div id="pista3" class="pista hidden">Pista: A terceira letra da senha é <strong>B</strong>.</div>
+        </div>
+        <div id="sala4" class="sala hidden">
+            <h2>Sala 4</h2>
+            <div class="question">Qual das palavras está escrita corretamente?</div>
+            <div class="options">
+                <button onclick="responder(4, 'a')">a) Exceção</button>
+                <button onclick="responder(4, 'b')">b) Exessão</button>
+                <button onclick="responder(4, 'c')">c) Eceção</button>
+                <button onclick="responder(4, 'd')">d) Excessão</button>
+            </div>
+            <div id="pista4" class="pista hidden">Pista: A última letra da senha é <strong>E</strong>.</div>
+        </div>
+        <div id="final" class="sala hidden">
+            <h2>Porta Final</h2>
+            <div>Digite a senha formada pelas pistas das salas anteriores:</div>
+            <input id="senha" class="senha-input" maxlength="4" placeholder="____">
+            <button onclick="verificarSenha()">Escapar!</button>
+            <div id="mensagemFinal"></div>
+        </div>
+    </div>
+    <script>
+        // Respostas corretas
+        const respostas = {
+            1: 'b',
+            2: 'b',
+            3: 'b',
+            4: 'a'
+        };
+
+        // Função de resposta
+        function responder(sala, resposta) {
+            if (resposta === respostas[sala]) {
+                document.getElementById('pista' + sala).classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('sala' + sala).classList.add('hidden');
+                    if (sala < 4) {
+                        document.getElementById('sala' + (sala + 1)).classList.remove('hidden');
+                    } else {
+                        document.getElementById('final').classList.remove('hidden');
+                    }
+                }, 1200);
+            } else {
+                alert('Resposta incorreta! Tente novamente.');
+            }
+        }
+
+        // Verificação da senha final
+        function verificarSenha() {
+            const senha = document.getElementById('senha').value.trim().toUpperCase();
+            const mensagem = document.getElementById('mensagemFinal');
+            if (senha === 'TABE') {
+                mensagem.innerHTML = '<div class="success">Parabéns! Você escapou da sala misteriosa do português! 🎉</div>';
+            } else {
+                mensagem.innerHTML = '<div class="error">Senha incorreta! Verifique as pistas e tente novamente.</div>';
+            }
+        }
+    </script>
+</body>
+</html>
