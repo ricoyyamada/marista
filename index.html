@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Escape Room Português - Estilo Duolingo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Fonte similar à do Duolingo -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,7 +15,17 @@
       <p class="duo-subtitle">Quiz de Português do 9º Ano</p>
     </header>
     <main>
-      <div id="quiz"></div>
+      <!-- Tela de abertura -->
+      <div id="start-screen">
+        <p class="duo-intro">Bem-vindo(a)! Teste seus conhecimentos e escape da Biblioteca Encantada respondendo todas as perguntas corretamente. Boa sorte!</p>
+        <button id="startBtn" class="duo-btn">Começar</button>
+      </div>
+      <!-- Cronômetro -->
+      <div id="timer" style="display:none;">
+        <span>⏱️</span> <span id="time">00:00</span>
+      </div>
+      <!-- Quiz -->
+      <div id="quiz" style="display:none;"></div>
       <button id="nextBtn" class="duo-btn" style="display:none;">Próxima</button>
       <button id="restartBtn" class="duo-btn duo-btn-red" style="display:none;">Reiniciar</button>
       <div id="result"></div>
