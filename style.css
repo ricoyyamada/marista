@@ -163,4 +163,19 @@ main {
   h1 {
     font-size: 1.1em;
   }
+.marist-logo {
+  width: 80px;
+  display: block;
+  margin: 0 auto 12px auto;
 }
+.duo-logo {
+  width: 64px;
+  margin-bottom: 8px;
+}
+@media (max-width: 500px) {
+  .marist-logo {
+    width: 56px;
+    margin-bottom: 8px;
+  }
+}
+
