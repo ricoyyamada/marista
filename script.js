@@ -113,7 +113,6 @@ var elapsedSeconds = 0;
 
 // Barra de progresso
 function updateProgressBar() {
-  var container = document.getElementById("progress-bar-container");
   var fill = document.getElementById("progress-bar-fill");
   var text = document.getElementById("progress-text");
   var total = questions.length;
@@ -278,7 +277,7 @@ function showResult() {
   restartBtn.style.display = "inline-block";
 }
 
-// NOVA FUNÇÃO: Mostra resultado parcial ao desistir
+// Mostra resultado parcial ao desistir
 function quitQuiz() {
   stopTimer();
   var resultDiv = document.getElementById("result");
