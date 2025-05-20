@@ -10,7 +10,7 @@
 
 body {
   background: var(--duo-bg);
-  font-family: 'Nunito', Arial, sans-serif;
+  font-family: "Nunito", Arial, sans-serif;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -31,9 +31,16 @@ header {
   padding: 24px 16px 8px 16px;
 }
 
+.marist-logo {
+  width: 80px;
+  display: block;
+  margin: 0 auto 12px auto;
+}
+
 .duo-logo {
   width: 64px;
-  margin-bottom: 8px;
+  margin: 0 auto 8px auto;
+  display: block;
 }
 
 h1 {
@@ -163,19 +170,12 @@ main {
   h1 {
     font-size: 1.1em;
   }
-.marist-logo {
-  width: 80px;
-  display: block;
-  margin: 0 auto 12px auto;
-}
-.duo-logo {
-  width: 64px;
-  margin-bottom: 8px;
-}
-@media (max-width: 500px) {
   .marist-logo {
     width: 56px;
     margin-bottom: 8px;
   }
+  .duo-logo {
+    width: 48px;
+    margin-bottom: 6px;
+  }
 }
-
