@@ -37,12 +37,6 @@ header {
   margin: 0 auto 12px auto;
 }
 
-.duo-logo {
-  width: 64px;
-  margin: 0 auto 8px auto;
-  display: block;
-}
-
 h1 {
   font-size: 1.4em;
   color: var(--duo-green);
