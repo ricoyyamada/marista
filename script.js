@@ -111,6 +111,29 @@ var selectedOption = null;
 var timerInterval = null;
 var elapsedSeconds = 0;
 
+// Barra de progresso
+function updateProgressBar() {
+  var container = document.getElementById("progress-bar-container");
+  var fill = document.getElementById("progress-bar-fill");
+  var text = document.getElementById("progress-text");
+  var total = questions.length;
+  var atual = currentQuestion;
+  if (atual > total) atual = total;
+  var percent = Math.round((atual / total) * 100);
+  fill.style.width = percent + "%";
+  text.textContent = "Pergunta " + (atual + 1 > total ? total : atual + 1) + " de " + total;
+}
+
+function showProgressBar() {
+  document.getElementById("progress-bar-container").style.display = "block";
+  updateProgressBar();
+}
+
+function hideProgressBar() {
+  document.getElementById("progress-bar-container").style.display = "none";
+}
+
+// Cronômetro
 function formatTime(sec) {
   var min = Math.floor(sec / 60);
   var s = sec % 60;
@@ -131,6 +154,7 @@ function stopTimer() {
   clearInterval(timerInterval);
 }
 
+// Telas principais
 function showStartScreen() {
   document.getElementById("start-screen").style.display = "block";
   document.getElementById("quiz").style.display = "none";
@@ -139,6 +163,7 @@ function showStartScreen() {
   document.getElementById("quitBtn").style.display = "none";
   document.getElementById("timer").style.display = "none";
   document.getElementById("result").innerHTML = "";
+  hideProgressBar();
 }
 
 function startQuiz() {
@@ -149,6 +174,7 @@ function startQuiz() {
   currentQuestion = 0;
   correctAnswers = 0;
   startTimer();
+  showProgressBar();
   showQuestion();
 }
 
@@ -159,6 +185,7 @@ function showQuestion() {
   resultDiv.textContent = "";
   selectedOption = null;
   document.getElementById("quitBtn").style.display = "inline-block";
+  updateProgressBar();
 
   if (currentQuestion < questions.length) {
     var q = questions[currentQuestion];
@@ -231,6 +258,7 @@ function showResult() {
   nextBtn.style.display = "none";
   quitBtn.style.display = "none";
   stopTimer();
+  hideProgressBar();
   var tempo = formatTime(elapsedSeconds);
   if (correctAnswers === questions.length) {
     resultDiv.innerHTML =
@@ -259,6 +287,7 @@ function quitQuiz() {
   showStartScreen();
 }
 
+// Inicialização dos eventos
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("startBtn").onclick = startQuiz;
   document.getElementById("nextBtn").onclick = checkAnswer;
