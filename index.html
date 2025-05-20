@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Escape Room Português - Estilo Duolingo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="duo-container">
     <header>
       <!-- Logotipo Marista -->
-      <img src="https://pplx-res.cloudinary.com/image/private/user_uploads/39988635/49861633-122e-495c-8455-3b8b3df757a9/2000px-Marys_monogram_Marist_Brothers.svg.jpg"
-           alt="Monograma de Maria - Marista"
-           class="marist-logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Duolingo_logo_2022.svg" alt="Logo Duolingo" class="duo-logo">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/9/92/Marys_monogram_Marist_Brothers.svg"
+        alt="Monograma de Maria - Marista"
+        class="marist-logo"
+      />
+      <!-- Logotipo Duolingo -->
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Duolingo_logo_2022.svg"
+        alt="Logo Duolingo"
+        class="duo-logo"
+      />
       <h1>Escape Room: Biblioteca Encantada</h1>
       <p class="duo-subtitle">Quiz de Português do 9º Ano</p>
     </header>
     <main>
       <!-- Tela de abertura -->
       <div id="start-screen">
-        <p class="duo-intro">Bem-vindo(a)! Teste seus conhecimentos e escape da Biblioteca Encantada respondendo todas as perguntas corretamente. Boa sorte!</p>
+        <p class="duo-intro">
+          Bem-vindo(a)! Teste seus conhecimentos e escape da Biblioteca Encantada
+          respondendo todas as perguntas corretamente. Boa sorte!
+        </p>
         <button id="startBtn" class="duo-btn">Começar</button>
       </div>
       <!-- Cronômetro -->
-      <div id="timer" style="display:none;">
+      <div id="timer" style="display: none">
         <span>⏱️</span> <span id="time">00:00</span>
       </div>
       <!-- Quiz -->
-      <div id="quiz" style="display:none;"></div>
-      <button id="nextBtn" class="duo-btn" style="display:none;">Próxima</button>
-      <button id="restartBtn" class="duo-btn duo-btn-red" style="display:none;">Reiniciar</button>
+      <div id="quiz" style="display: none"></div>
+      <button id="nextBtn" class="duo-btn" style="display: none">Próxima</button>
+      <button id="restartBtn" class="duo-btn duo-btn-red" style="display: none">
+        Reiniciar
+      </button>
       <div id="result"></div>
     </main>
   </div>
