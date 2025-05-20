@@ -278,12 +278,33 @@ function showResult() {
   restartBtn.style.display = "inline-block";
 }
 
-function restartGame() {
-  showStartScreen();
-}
-
+// NOVA FUNÇÃO: Mostra resultado parcial ao desistir
 function quitQuiz() {
   stopTimer();
+  var resultDiv = document.getElementById("result");
+  var quizDiv = document.getElementById("quiz");
+  var nextBtn = document.getElementById("nextBtn");
+  var restartBtn = document.getElementById("restartBtn");
+  var quitBtn = document.getElementById("quitBtn");
+  var tempo = formatTime(elapsedSeconds);
+  var erros = currentQuestion - correctAnswers;
+  quizDiv.innerHTML = "";
+  quizDiv.style.display = "none";
+  nextBtn.style.display = "none";
+  quitBtn.style.display = "none";
+  hideProgressBar();
+
+  resultDiv.innerHTML =
+    "<span style='color:#ff4b4b;'>Você desistiu do desafio.</span><br>" +
+    "Acertos: <b>" + correctAnswers + "</b><br>" +
+    "Erros: <b>" + erros + "</b><br>" +
+    "Perguntas respondidas: <b>" + currentQuestion + "</b> de <b>" + questions.length + "</b><br>" +
+    "⏱️ Seu tempo: " + tempo +
+    "<br><br>Clique em <b>Reiniciar</b> para tentar novamente!";
+  restartBtn.style.display = "inline-block";
+}
+
+function restartGame() {
   showStartScreen();
 }
 
