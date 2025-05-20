@@ -1,115 +1,513 @@
-var questions = [
+// Função para sortear 20 questões aleatórias do banco de 100
+function getRandomQuestions(allQuestions, n) {
+  let shuffled = allQuestions.slice().sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, n);
+}
+
+// Banco de 100 questões sobre figuras de linguagem (exemplos, complete até 100)
+var allQuestions = [
   {
-    question: '1. Qual tempo verbal está em destaque? "Eu tinha estudado para a prova, mas esqueci tudo."',
-    options: ['Pretérito perfeito', 'Pretérito mais-que-perfeito', 'Futuro do presente'],
+    question: '1. "O vento sussurrava segredos nas árvores." Qual figura de linguagem está presente?',
+    options: ['Metáfora', 'Personificação', 'Hipérbole'],
     answer: 1
   },
   {
-    question: '2. "Livros incríveis" – a classificação morfológica de "incríveis" é:',
-    options: ['Advérbio', 'Adjetivo', 'Substantivo'],
+    question: '2. "Ela estava com um coração de pedra." Qual figura de linguagem?',
+    options: ['Metáfora', 'Antítese', 'Eufemismo'],
+    answer: 0
+  },
+  {
+    question: '3. "Estou morrendo de sede." Qual figura de linguagem?',
+    options: ['Metonímia', 'Hipérbole', 'Ironia'],
     answer: 1
   },
   {
-    question: '3. Identifique a oração subordinada adverbial: "Voltei cedo porque estava cansado."',
-    options: ['Final', 'Temporal', 'Causal'],
+    question: '4. "O sol sorriu para mim." Qual figura de linguagem?',
+    options: ['Personificação', 'Comparação', 'Paradoxo'],
+    answer: 0
+  },
+  {
+    question: '5. "Ele era forte como um touro." Qual figura de linguagem?',
+    options: ['Metáfora', 'Comparação', 'Eufemismo'],
+    answer: 1
+  },
+  {
+    question: '6. "Ele tem um coração de ouro." Qual figura de linguagem?',
+    options: ['Comparação', 'Metáfora', 'Antítese'],
+    answer: 1
+  },
+  {
+    question: '7. "Choveu canivetes ontem." Qual figura de linguagem?',
+    options: ['Hipérbole', 'Metonímia', 'Ironia'],
+    answer: 0
+  },
+  {
+    question: '8. "A multidão gritava em silêncio." Qual figura de linguagem?',
+    options: ['Paradoxo', 'Eufemismo', 'Metáfora'],
+    answer: 0
+  },
+  {
+    question: '9. "Ele fugiu feito um coelho." Qual figura de linguagem?',
+    options: ['Comparação', 'Metáfora', 'Antítese'],
+    answer: 0
+  },
+  {
+    question: '10. "A vida é uma caixinha de surpresas." Qual figura de linguagem?',
+    options: ['Metáfora', 'Personificação', 'Hipérbole'],
+    answer: 0
+  },
+  {
+    question: '11. "A morte é apenas uma passagem." Qual figura de linguagem?',
+    options: ['Eufemismo', 'Antítese', 'Ironia'],
+    answer: 0
+  },
+  {
+    question: '12. "Ele é um poço de paciência." Qual figura de linguagem?',
+    options: ['Metáfora', 'Comparação', 'Metonímia'],
+    answer: 0
+  },
+  {
+    question: '13. "O Brasil venceu com facilidade: 10 a 0." Qual figura de linguagem?',
+    options: ['Hipérbole', 'Metonímia', 'Eufemismo'],
+    answer: 0
+  },
+  {
+    question: '14. "Ela chorou rios de lágrimas." Qual figura de linguagem?',
+    options: ['Hipérbole', 'Metáfora', 'Antítese'],
+    answer: 0
+  },
+  {
+    question: '15. "O tempo voa." Qual figura de linguagem?',
+    options: ['Personificação', 'Metáfora', 'Comparação'],
+    answer: 0
+  },
+  {
+    question: '16. "Ele não disse uma só palavra." Qual figura de linguagem?',
+    options: ['Eufemismo', 'Antítese', 'Litote'],
     answer: 2
   },
   {
-    question: '4. Reescreva na voz passiva: "O poeta escreveu o soneto."',
-    options: [
-      'O soneto foi escrito pelo poeta.',
-      'O soneto é escrito pelo poeta.',
-      'O poeta foi escrito pelo soneto.'
-    ],
+    question: '17. "A esperança é a última que morre." Qual figura de linguagem?',
+    options: ['Personificação', 'Metáfora', 'Comparação'],
     answer: 0
   },
   {
-    question: '5. Qual pontuação completa a frase? "Ana disse ___ Preciso estudar ___"',
-    options: [': —', ', ...', '; —'],
+    question: '18. "Ele é fogo e gelo ao mesmo tempo." Qual figura de linguagem?',
+    options: ['Paradoxo', 'Antítese', 'Metáfora'],
     answer: 0
   },
   {
-    question: '6. Quem escreveu "Dom Casmurro"?',
-    options: ['Machado de Assis', 'José de Alencar', 'Carlos Drummond de Andrade'],
+    question: '19. "O homem é um lobo para o homem." Qual figura de linguagem?',
+    options: ['Metáfora', 'Comparação', 'Metonímia'],
     answer: 0
   },
   {
-    question: '7. O romance "Iracema" pertence a qual movimento literário?',
-    options: ['Romantismo', 'Realismo', 'Modernismo'],
+    question: '20. "Ela estava entre a cruz e a espada." Qual figura de linguagem?',
+    options: ['Metáfora', 'Antítese', 'Paradoxo'],
     answer: 0
   },
   {
-    question: '8. Complete o verso de Carlos Drummond: "No meio do caminho tinha uma pedra / Tinha uma pedra no meio do caminho..." (Quantas vezes "pedra" aparece?)',
-    options: ['2', '3', '4'],
-    answer: 1
-  },
-  {
-    question: '9. Qual característica define o Realismo?',
-    options: ['Idealização do amor', 'Crítica social', 'Fuga da realidade'],
-    answer: 1
-  },
-  {
-    question: '10. Quem é o autor de "Vidas Secas"?',
-    options: ['Jorge Amado', 'Graciliano Ramos', 'Manuel Bandeira'],
-    answer: 1
-  },
-  {
-    question: '11. Qual é o tema central do texto: "O verão em Belém é úmido, mas o cheiro de açaí no Ver-o-Peso traz alívio..."?',
-    options: ['Cultura amazônica', 'Política local', 'Economia regional'],
-    answer: 0
-  },
-  {
-    question: '12. O que o trecho "herança dos indígenas" sugere?',
-    options: ['Influência histórica', 'Mudança climática', 'Festa popular'],
-    answer: 0
-  },
-  {
-    question: '13. Identifique uma linguagem figurada no texto ("cheiro de açaí traz alívio").',
-    options: ['Metáfora', 'Comparação', 'Eufemismo'],
-    answer: 0
-  },
-  {
-    question: '14. Complete: "Ele ____ a mesa com cuidado."',
-    options: ['pôs', 'pos', 'pous'],
-    answer: 0
-  },
-  {
-    question: '15. Corrija: "A professora deu vários exemplos mas os alunos não prestaram atenção." (Qual palavra precisa de vírgula antes?)',
-    options: ['mas', 'deu', 'atenção'],
-    answer: 0
-  },
-  {
-    question: '16. Use o acento certo: "Ele bebeu cafeina demais."',
-    options: ['cafeina', 'cafeína', 'caféina'],
-    answer: 1
-  },
-  {
-    question: '17. O plural de "cidadão" é:',
-    options: ['cidadões', 'cidadãos', 'cidadães'],
-    answer: 1
-  },
-  {
-    question: '18. Assinale a alternativa em que há erro de concordância:',
-    options: ['Os alunos trouxeram seus livros.', 'Fazem dois anos que estudo aqui.', 'Havia muitas pessoas na festa.'],
-    answer: 1
-  },
-  {
-    question: '19. Em "A menina correu rapidamente", "rapidamente" é:',
-    options: ['Verbo', 'Advérbio', 'Adjetivo'],
-    answer: 1
-  },
-  {
-    question: '20. Qual frase está correta?',
-    options: ['Fazem três meses que não chove.', 'Faz três meses que não chove.', 'Já se passaram três mêses que não chove.'],
-    answer: 1
-  }
-];
+  question: '21. "Ele está na flor da idade." Qual figura de linguagem?',
+  options: ['Eufemismo', 'Metáfora', 'Antítese'],
+  answer: 1
+},
+{
+  question: '22. "A cidade nunca dorme." Qual figura de linguagem?',
+  options: ['Personificação', 'Metonímia', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '23. "Ela é uma leoa defendendo seus filhos." Qual figura de linguagem?',
+  options: ['Comparação', 'Metáfora', 'Ironia'],
+  answer: 1
+},
+{
+  question: '24. "Estou vendo tudo preto." Qual figura de linguagem?',
+  options: ['Metáfora', 'Eufemismo', 'Antítese'],
+  answer: 0
+},
+{
+  question: '25. "Ele tem mãos de fada." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '26. "O relógio correu durante a prova." Qual figura de linguagem?',
+  options: ['Personificação', 'Metonímia', 'Ironia'],
+  answer: 0
+},
+{
+  question: '27. "Ele está entre a cruz e a espada." Qual figura de linguagem?',
+  options: ['Metáfora', 'Antítese', 'Paradoxo'],
+  answer: 0
+},
+{
+  question: '28. "Ela é uma pedra no meu sapato." Qual figura de linguagem?',
+  options: ['Metáfora', 'Hipérbole', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '29. "O mar estava bravo." Qual figura de linguagem?',
+  options: ['Personificação', 'Comparação', 'Metáfora'],
+  answer: 0
+},
+{
+  question: '30. "O silêncio gritava naquela sala." Qual figura de linguagem?',
+  options: ['Paradoxo', 'Personificação', 'Metáfora'],
+  answer: 1
+},
+{
+  question: '31. "Ele tem olhos de águia." Qual figura de linguagem?',
+  options: ['Comparação', 'Metáfora', 'Antítese'],
+  answer: 1
+},
+{
+  question: '32. "A noite caiu rapidamente." Qual figura de linguagem?',
+  options: ['Metáfora', 'Personificação', 'Hipérbole'],
+  answer: 1
+},
+{
+  question: '33. "Ela é uma flor." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '34. "Estou morrendo de rir." Qual figura de linguagem?',
+  options: ['Hipérbole', 'Metáfora', 'Ironia'],
+  answer: 0
+},
+{
+  question: '35. "Ele tem um coração de gelo." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '36. "O vento dançava entre as árvores." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '37. "Ela é uma fera nos estudos." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Ironia'],
+  answer: 0
+},
+{
+  question: '38. "Ele é um leão no trabalho." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '39. "O tempo é dinheiro." Qual figura de linguagem?',
+  options: ['Metáfora', 'Personificação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '40. "Ela estava com a cabeça nas nuvens." Qual figura de linguagem?',
+  options: ['Metáfora', 'Eufemismo', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '41. "Ele é um rato de biblioteca." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '42. "O rio chorava suas mágoas." Qual figura de linguagem?',
+  options: ['Personificação', 'Hipérbole', 'Metáfora'],
+  answer: 0
+},
+{
+  question: '43. "Ela tem olhos de lince." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '44. "O céu estava vestido de laranja." Qual figura de linguagem?',
+  options: ['Metáfora', 'Personificação', 'Comparação'],
+  answer: 0
+},
+{
+  question: '45. "Ele é um poço de simpatia." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '46. "O carro voava pela estrada." Qual figura de linguagem?',
+  options: ['Hipérbole', 'Personificação', 'Metáfora'],
+  answer: 2
+},
+{
+  question: '47. "Ele está com um pé na cova." Qual figura de linguagem?',
+  options: ['Eufemismo', 'Metáfora', 'Ironia'],
+  answer: 0
+},
+{
+  question: '48. "Ela tem mãos de fada." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '49. "O relógio correu durante a prova." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '50. "Ele é um peixe fora d’água." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '51. "Ela é uma pedra no meu caminho." Qual figura de linguagem?',
+  options: ['Metáfora', 'Hipérbole', 'Antítese'],
+  answer: 0
+},
+{
+  question: '52. "O vento cantava sua canção." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '53. "Ele é um touro de forte." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '54. "Ela tem olhos de águia." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '55. "O tempo voa quando estou com você." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '56. "Ele é um poço de paciência." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '57. "O mar estava nervoso." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '58. "Ela é uma estrela no palco." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '59. "O vento assobiava forte." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '60. "Ele tem uma força de leão." Qual figura de linguagem?',
+  options: ['Comparação', 'Metáfora', 'Antítese'],
+  answer: 1
+},
+{
+  question: '61. "O tempo passou voando." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '62. "Ela é uma fera na matemática." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '63. "O rio engoliu a ponte." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '64. "Ele é um rato de academia." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '65. "O vento brincava com as folhas." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Hipérbole'],
+  answer: 0
+},
+{
+  question: '66. "Ela é uma joia rara." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '67. "O tempo é um mestre severo." Qual figura de linguagem?',
+  options: ['Metáfora', 'Personificação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '68. "Ele é um livro aberto." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '69. "O vento uivava na noite." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '70. "Ela é um anjo de pessoa." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '71. "O mar beijava a areia." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '72. "Ele é um vulcão de emoções." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '73. "O tempo cura todas as feridas." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '74. "Ela é uma máquina de estudar." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Antítese'],
+  answer: 0
+},
+{
+  question: '75. "O vento acariciava meu rosto." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '76. "Ele é um gigante no futebol." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '77. "O sol dourava a paisagem." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '78. "Ela é uma enciclopédia ambulante." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '79. "O vento sussurrava segredos." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '80. "Ele é um furacão de energia." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '81. "O rio corria apressado." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '82. "Ela é uma borboleta na vida." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '83. "O tempo devora tudo." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '84. "Ele é um vulcão de ideias." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '85. "O vento lambia as paredes." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '86. "Ela é uma tempestade de emoções." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '87. "O sol pintava o céu de vermelho." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '88. "Ele é uma rocha em meio à tempestade." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '89. "O vento arranhava as janelas." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '90. "Ela é uma fonte de alegria." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '91. "O tempo é um ladrão." Qual figura de linguagem?',
+  options: ['Metáfora', 'Personificação', 'Comparação'],
+  answer: 0
+},
+{
+  question: '92. "Ele é uma muralha de coragem." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '93. "O mar engolia os barcos." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '94. "Ela é uma luz na escuridão." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '95. "O vento varria as ruas." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '96. "Ele é uma árvore frondosa de sabedoria." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '97. "O tempo apaga as lembranças." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '98. "Ela é uma chama de esperança." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+},
+{
+  question: '99. "O vento desenhava formas no campo." Qual figura de linguagem?',
+  options: ['Personificação', 'Metáfora', 'Comparação'],
+  answer: 0
+},
+{
+  question: '100. "Ele é uma ponte entre culturas." Qual figura de linguagem?',
+  options: ['Metáfora', 'Comparação', 'Eufemismo'],
+  answer: 0
+}
 
-var currentQuestion = 0;
-var correctAnswers = 0;
-var selectedOption = null;
-var timerInterval = null;
-var elapsedSeconds = 0;
+var questions = []; // será preenchido ao iniciar o quiz
 
 // Barra de progresso
 function updateProgressBar() {
@@ -166,6 +564,7 @@ function showStartScreen() {
 }
 
 function startQuiz() {
+  questions = getRandomQuestions(allQuestions, 20);
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("quiz").style.display = "block";
   document.getElementById("result").innerHTML = "";
