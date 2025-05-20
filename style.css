@@ -32,8 +32,8 @@ header {
 }
 
 .marist-logo {
-  width: 240px;
-  max-width: 240px;
+  width: 180px;
+  max-width: 80vw;
   display: block;
   margin: 0 auto 12px auto;
   border-radius: 10px;
@@ -148,6 +148,15 @@ main {
   box-shadow: 0 2px 8px #ffb6b6;
 }
 
+.duo-btn-gray {
+  background: #bdbdbd;
+  color: #fff;
+  box-shadow: 0 2px 8px #e0e0e0;
+}
+.duo-btn-gray:active {
+  background: #8d8d8d;
+}
+
 #result {
   font-size: 1.2em;
   font-weight: bold;
@@ -170,20 +179,8 @@ main {
     font-size: 1.1em;
   }
   .marist-logo {
-    width: 56px;
+    width: 90px;
+    max-width: 90vw;
     margin-bottom: 8px;
   }
-  .duo-logo {
-    width: 48px;
-    margin-bottom: 6px;
-  }
-.duo-btn-gray {
-  background: #bdbdbd;
-  color: #fff;
-  box-shadow: 0 2px 8px #e0e0e0;
 }
-.duo-btn-gray:active {
-  background: #8d8d8d;
-}
-
-
