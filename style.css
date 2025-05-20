@@ -177,4 +177,13 @@ main {
     width: 48px;
     margin-bottom: 6px;
   }
+.duo-btn-gray {
+  background: #bdbdbd;
+  color: #fff;
+  box-shadow: 0 2px 8px #e0e0e0;
 }
+.duo-btn-gray:active {
+  background: #8d8d8d;
+}
+
+
