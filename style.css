@@ -78,6 +78,39 @@ main {
   letter-spacing: 1px;
 }
 
+/* Barra de progresso */
+#progress-bar-container {
+  margin: 12px 0 18px 0;
+  text-align: center;
+}
+
+#progress-bar {
+  width: 100%;
+  max-width: 340px;
+  height: 18px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 1px 4px #e0e0e0;
+  position: relative;
+}
+
+#progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #58cc02 60%, #1cb0f6 100%);
+  border-radius: 12px 0 0 12px;
+  transition: width 0.5s cubic-bezier(.4,1.4,.6,1);
+}
+
+#progress-text {
+  font-size: 0.98em;
+  color: #222;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
 .question {
   font-size: 1.1em;
   color: #222;
@@ -182,5 +215,12 @@ main {
     width: 90px;
     max-width: 90vw;
     margin-bottom: 8px;
+  }
+  #progress-bar {
+    max-width: 90vw;
+    height: 14px;
+  }
+  #progress-text {
+    font-size: 0.93em;
   }
 }
