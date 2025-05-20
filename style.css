@@ -1,141 +1,57 @@
-:root {
-  --duo-green: #58cc02;
-  --duo-dark-green: #1cb0f6;
-  --duo-yellow: #ffd600;
-  --duo-red: #ff4b4b;
-  --duo-bg: #f7fafd;
-  --duo-white: #fff;
-  --duo-gray: #e5e5e5;
+.professor-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 14px 0;
 }
-
-body {
-  background: var(--duo-bg);
-  font-family: 'Nunito', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+.professor-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #e6f9e6;
+  box-shadow: 0 2px 8px #b6e5b6;
+  animation: bounce 1.2s infinite alternate;
 }
-
-.duo-container {
-  max-width: 420px;
-  margin: 24px auto;
-  background: var(--duo-white);
-  border-radius: 18px;
-  box-shadow: 0 4px 16px #d6e7e3;
-  padding: 0 0 24px 0;
-}
-
-header {
-  text-align: center;
-  padding: 24px 16px 8px 16px;
-}
-
-.duo-logo {
-  width: 64px;
-  margin-bottom: 8px;
-}
-
-h1 {
-  font-size: 1.4em;
-  color: var(--duo-green);
-  margin: 0 0 4px 0;
-}
-
-.duo-subtitle {
-  color: var(--duo-dark-green);
+.professor-speech {
+  background: #fffbe6;
+  border: 2px solid #ffe066;
+  border-radius: 14px;
+  padding: 12px 16px;
   font-size: 1em;
-  margin-bottom: 8px;
+  color: #444;
+  min-width: 150px;
+  max-width: 220px;
+  box-shadow: 0 2px 8px #f7eeb6;
+  position: relative;
 }
-
-main {
-  padding: 0 16px;
+.professor-speech:before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 24px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 18px solid #fffbe6;
 }
-
-.question {
+@keyframes bounce {
+  0% { transform: translateY(0);}
+  100% { transform: translateY(-8px);}
+}
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
   font-size: 1.1em;
-  color: #222;
-  margin: 20px 0 10px 0;
   font-weight: 600;
-}
-
-.options {
-  margin-bottom: 16px;
-}
-
-.options label {
-  display: block;
-  background: var(--duo-gray);
-  border-radius: 12px;
   margin-bottom: 10px;
-  padding: 12px 18px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  border: 2px solid transparent;
-  font-weight: 500;
+  padding: 4px 10px;
+  background: #e7f6e7;
+  border-radius: 10px;
+  color: #222;
 }
-
-.options input[type="radio"] {
-  display: none;
-}
-
-.options label.selected {
-  background: var(--duo-green);
-  color: var(--duo-white);
-  border-color: var(--duo-green);
-  box-shadow: 0 2px 8px #b6e5b6;
-}
-
-.options label.incorrect {
-  background: var(--duo-red);
-  color: var(--duo-white);
-  border-color: var(--duo-red);
-}
-
-.duo-btn {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto 8px auto;
-  display: block;
-  background: var(--duo-green);
-  color: var(--duo-white);
-  border: none;
-  border-radius: 16px;
-  font-size: 1.1em;
-  font-weight: 700;
-  padding: 14px 0;
-  cursor: pointer;
-  box-shadow: 0 2px 8px #b6e5b6;
-  transition: background 0.2s;
-}
-
-.duo-btn:active {
-  background: #399e07;
-}
-
-.duo-btn-red {
-  background: var(--duo-red);
-  box-shadow: 0 2px 8px #ffb6b6;
-}
-
-#result {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: var(--duo-green);
-  margin-top: 20px;
-  text-align: center;
-}
-
 @media (max-width: 500px) {
-  .duo-container {
-    max-width: 98vw;
-    margin: 8px;
-    padding: 0 0 10px 0;
-    border-radius: 0;
-  }
-  main {
-    padding: 0 4vw;
-  }
-  h1 {
-    font-size: 1.1em;
-  }
+  .professor-speech { font-size: 0.97em; min-width: 90px; max-width: 98vw;}
+  .professor-img { width: 44px; height: 44px;}
+  .scoreboard { font-size: 1em; }
 }
