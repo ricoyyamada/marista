@@ -136,6 +136,7 @@ function showStartScreen() {
   document.getElementById("quiz").style.display = "none";
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("restartBtn").style.display = "none";
+  document.getElementById("quitBtn").style.display = "none";
   document.getElementById("timer").style.display = "none";
   document.getElementById("result").innerHTML = "";
 }
@@ -144,6 +145,7 @@ function startQuiz() {
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("quiz").style.display = "block";
   document.getElementById("result").innerHTML = "";
+  document.getElementById("quitBtn").style.display = "inline-block";
   currentQuestion = 0;
   correctAnswers = 0;
   startTimer();
@@ -156,6 +158,7 @@ function showQuestion() {
   var resultDiv = document.getElementById("result");
   resultDiv.textContent = "";
   selectedOption = null;
+  document.getElementById("quitBtn").style.display = "inline-block";
 
   if (currentQuestion < questions.length) {
     var q = questions[currentQuestion];
@@ -221,10 +224,12 @@ function showResult() {
   var quizDiv = document.getElementById("quiz");
   var nextBtn = document.getElementById("nextBtn");
   var restartBtn = document.getElementById("restartBtn");
+  var quitBtn = document.getElementById("quitBtn");
   var resultDiv = document.getElementById("result");
   quizDiv.innerHTML = "";
   quizDiv.style.display = "none";
   nextBtn.style.display = "none";
+  quitBtn.style.display = "none";
   stopTimer();
   var tempo = formatTime(elapsedSeconds);
   if (correctAnswers === questions.length) {
@@ -249,9 +254,15 @@ function restartGame() {
   showStartScreen();
 }
 
+function quitQuiz() {
+  stopTimer();
+  showStartScreen();
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("startBtn").onclick = startQuiz;
   document.getElementById("nextBtn").onclick = checkAnswer;
   document.getElementById("restartBtn").onclick = restartGame;
+  document.getElementById("quitBtn").onclick = quitQuiz;
   showStartScreen();
 });
