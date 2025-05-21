@@ -1,11 +1,49 @@
+// Frases de elogio para acertos
+var frasesAcerto = [
+  "Muito bem!",
+  "Ótimo trabalho!",
+  "Parabéns, você acertou!",
+  "Resposta correta, continue assim!",
+  "Arrasou!",
+  "Excelente escolha!",
+  "Você está mandando bem!",
+  "Acertou em cheio!",
+  "Show de bola!",
+  "Mandou ver!"
+];
+
+// Frases de excelência para acertos consecutivos
+var frasesExcelencia = [
+  "Sensacional! Você acertou várias seguidas!",
+  "Incrível! Uma sequência de acertos!",
+  "Você está em uma ótima fase!",
+  "Que desempenho brilhante!",
+  "Continue assim, campeão(ã)!"
+];
+
+// Frases motivacionais para respostas erradas
+var frasesErro = [
+  "Não desanime, tente a próxima!",
+  "Errou, mas não desista!",
+  "Continue tentando, você consegue!",
+  "Força! A próxima você acerta!",
+  "Errar faz parte do aprendizado.",
+  "Levante a cabeça e siga em frente!",
+  "Você está quase lá!",
+  "Continue focado!",
+  "Não se preocupe, tente de novo!",
+  "O importante é continuar tentando!"
+];
+
+// Função para frase aleatória
+function fraseAleatoria(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
 // Função para sortear 20 questões aleatórias do banco de 100
 function getRandomQuestions(allQuestions, n) {
   let shuffled = allQuestions.slice().sort(() => 0.5 - Math.random());
   return shuffled.slice(0, n);
-}
-
-// Banco de 100 questões sobre figuras de linguagem (apenas exemplos, complete até 100)
-var allQuestions = [
   {
     question: '1. "O vento sussurrava segredos nas árvores." Qual figura de linguagem está presente?',
     options: ['Metáfora', 'Personificação', 'Hipérbole'],
@@ -510,6 +548,13 @@ var allQuestions = [
 
 var questions = []; // será preenchido ao iniciar o quiz
 
+var currentQuestion = 0;
+var correctAnswers = 0;
+var selectedOption = null;
+var timerInterval = null;
+var elapsedSeconds = 0;
+var acertosSeguidos = 0;
+
 // Barra de progresso
 function updateProgressBar() {
   var fill = document.getElementById("progress-bar-fill");
@@ -562,6 +607,7 @@ function showStartScreen() {
   document.getElementById("timer").style.display = "none";
   document.getElementById("result").innerHTML = "";
   hideProgressBar();
+  document.getElementById("feedback").textContent = "";
 }
 
 function startQuiz() {
@@ -572,6 +618,7 @@ function startQuiz() {
   document.getElementById("quitBtn").style.display = "inline-block";
   currentQuestion = 0;
   correctAnswers = 0;
+  acertosSeguidos = 0;
   startTimer();
   showProgressBar();
   showQuestion();
@@ -581,7 +628,9 @@ function showQuestion() {
   var quizDiv = document.getElementById("quiz");
   var nextBtn = document.getElementById("nextBtn");
   var resultDiv = document.getElementById("result");
+  var feedbackDiv = document.getElementById("feedback");
   resultDiv.textContent = "";
+  feedbackDiv.textContent = "";
   selectedOption = null;
   document.getElementById("quitBtn").style.display = "inline-block";
   updateProgressBar();
@@ -629,20 +678,30 @@ function checkAnswer() {
   }
   var correctIdx = questions[currentQuestion].answer;
   var labels = document.querySelectorAll(".options label");
+  var feedbackDiv = document.getElementById("feedback");
+
   if (selectedOption === correctIdx) {
     labels[selectedOption].classList.add("selected");
     correctAnswers++;
+    acertosSeguidos++;
+    if (acertosSeguidos >= 3) {
+      feedbackDiv.textContent = fraseAleatoria(frasesExcelencia);
+    } else {
+      feedbackDiv.textContent = fraseAleatoria(frasesAcerto);
+    }
     setTimeout(function () {
       currentQuestion++;
       showQuestion();
-    }, 300);
+    }, 900);
   } else {
     labels[selectedOption].classList.add("incorrect");
     labels[correctIdx].classList.add("selected");
+    feedbackDiv.textContent = fraseAleatoria(frasesErro);
+    acertosSeguidos = 0;
     setTimeout(function () {
       currentQuestion++;
       showQuestion();
-    }, 700);
+    }, 1400);
   }
 }
 
@@ -652,10 +711,12 @@ function showResult() {
   var restartBtn = document.getElementById("restartBtn");
   var quitBtn = document.getElementById("quitBtn");
   var resultDiv = document.getElementById("result");
+  var feedbackDiv = document.getElementById("feedback");
   quizDiv.innerHTML = "";
   quizDiv.style.display = "none";
   nextBtn.style.display = "none";
   quitBtn.style.display = "none";
+  feedbackDiv.textContent = "";
   stopTimer();
   hideProgressBar();
   var tempo = formatTime(elapsedSeconds);
@@ -685,12 +746,14 @@ function quitQuiz() {
   var nextBtn = document.getElementById("nextBtn");
   var restartBtn = document.getElementById("restartBtn");
   var quitBtn = document.getElementById("quitBtn");
+  var feedbackDiv = document.getElementById("feedback");
   var tempo = formatTime(elapsedSeconds);
   var erros = currentQuestion - correctAnswers;
   quizDiv.innerHTML = "";
   quizDiv.style.display = "none";
   nextBtn.style.display = "none";
   quitBtn.style.display = "none";
+  feedbackDiv.textContent = "";
   hideProgressBar();
 
   resultDiv.innerHTML =
