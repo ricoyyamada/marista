@@ -1,195 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Quiz de Figuras de Linguagem</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; }
-    .quiz-container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px #ccc; }
-    .question { font-size: 1.2em; margin-bottom: 18px; }
-    .options { list-style: none; padding: 0; }
-    .options li { margin-bottom: 12px; }
-    .progress-bar { height: 18px; background: #eee; border-radius: 9px; margin-bottom: 18px; overflow: hidden; }
-    .progress { height: 100%; background: #4caf50; width: 0; transition: width 0.3s; }
-    .timer { font-size: 1.1em; margin-bottom: 18px; }
-    .result { font-size: 1.3em; margin-top: 24px; }
-    button { padding: 8px 20px; font-size: 1em; border-radius: 4px; border: none; background: #4caf50; color: #fff; cursor: pointer; }
-    button:disabled { background: #ccc; }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Escape Room Português - Estilo Duolingo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="quiz-container">
-    <div class="timer" id="timer"></div>
-    <div class="progress-bar"><div class="progress" id="progress"></div></div>
-    <div class="question" id="question"></div>
-    <ul class="options" id="options"></ul>
-    <button id="next" style="display:none;">Próxima</button>
-    <div class="result" id="result"></div>
+  <div class="duo-container">
+    <header>
+      <!-- Logotipo Marista -->  
+      <img
+        src="https://craal.org.br/wp-content/uploads/2019/07/LOGO-MARISTA-1024x576.jpg"
+        alt="Logo Marista"
+        class="marist-logo"
+      />
+      <h1>Escape Room: Biblioteca Encantada</h1>
+      <p class="duo-subtitle">Quiz de Português do 9º Ano</p>
+    </header>
+    <main>
+      <!-- Tela de abertura -->
+      <div id="start-screen">
+        <p class="duo-intro">
+          Bem-vindo(a)! Teste seus conhecimentos e escape da Biblioteca Encantada
+          respondendo todas as perguntas corretamente. Boa sorte!
+        </p>
+        <button id="startBtn" class="duo-btn">Começar</button>
+      </div>
+      <!-- Cronômetro -->
+      <div id="timer" style="display: none">
+        <span>⏱️</span> <span id="time">00:00</span>
+      </div>
+      <!-- Barra de progresso -->
+      <div id="progress-bar-container" style="display:none;">
+        <div id="progress-bar">
+          <div id="progress-bar-fill"></div>
+        </div>
+        <div id="progress-text"></div>
+      </div>
+      <!-- Quiz -->
+      <div id="quiz" style="display: none"></div>
+      <!-- Feedback de acerto/erro -->
+      <div id="feedback"></div>
+      <button id="nextBtn" class="duo-btn" style="display:none;">Próxima</button>
+      <button id="restartBtn" class="duo-btn duo-btn-red" style="display:none;">Reiniciar</button>
+      <button id="quitBtn" class="duo-btn duo-btn-gray" style="display:none;">Desistir</button>
+      <div id="result"></div>
+    </main>
   </div>
-
-<script>
-const allQuestions = [
-  {
-    question: '"O vento sussurrava segredos nas árvores." Qual figura de linguagem está presente?',
-    options: ['Personificação', 'Metáfora', 'Hipérbole', 'Eufemismo', 'Antítese'],
-    answer: 0
-  },
-  {
-    question: '"Ele chorou um mar de lágrimas." Qual figura de linguagem foi utilizada?',
-    options: ['Antítese', 'Hipérbole', 'Metonímia', 'Catacrese', 'Ironia'],
-    answer: 1
-  },
-  {
-    question: '"Ela é uma leoa quando defende seus filhos." Identifique a figura de linguagem.',
-    options: ['Sinestesia', 'Eufemismo', 'Metáfora', 'Comparação', 'Paradoxo'],
-    answer: 2
-  },
-  {
-    question: '"Estou morrendo de fome." Qual é a figura de linguagem?',
-    options: ['Catacrese', 'Ironia', 'Metáfora', 'Hipérbole', 'Metonímia'],
-    answer: 3
-  },
-  {
-    question: '"A esperança é a última que morre." Qual figura de linguagem aparece?',
-    options: ['Antítese', 'Metáfora', 'Sinestesia', 'Eufemismo', 'Personificação'],
-    answer: 4
-  },
-  {
-    question: '"Ele tem um coração de pedra." Qual figura de linguagem foi usada?',
-    options: ['Metáfora', 'Sinestesia', 'Metonímia', 'Hipérbole', 'Antítese'],
-    answer: 0
-  },
-  {
-    question: '"O Brasil leu Machado de Assis." Identifique a figura de linguagem.',
-    options: ['Eufemismo', 'Metonímia', 'Hipérbole', 'Metáfora', 'Ironia'],
-    answer: 1
-  },
-  {
-    question: '"Ela tem um olhar de águia." Qual figura de linguagem está presente?',
-    options: ['Comparação', 'Paradoxo', 'Metáfora', 'Catacrese', 'Sinestesia'],
-    answer: 2
-  },
-  {
-    question: '"Ele é fogo e gelo ao mesmo tempo." Qual figura de linguagem predomina?',
-    options: ['Antítese', 'Prosopopeia', 'Metáfora', 'Paradoxo', 'Hipérbole'],
-    answer: 3
-  },
-  {
-    question: '"O perfume doce da música embalava o ambiente." Qual figura de linguagem foi empregada?',
-    options: ['Metáfora', 'Hipérbole', 'Personificação', 'Catacrese', 'Sinestesia'],
-    answer: 4
-  },
-  // Adicione mais questões até 100 seguindo o padrão acima!
-];
-
-const totalQuestions = 20; // Altere para 100 se quiser todas!
-let questions = [];
-let current = 0;
-let correct = 0;
-let timer = 300; // 5 minutos em segundos
-let interval = null;
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
-function getRandomQuestions() {
-  let copy = [...allQuestions];
-  shuffle(copy);
-  return copy.slice(0, totalQuestions);
-}
-
-function showQuestion() {
-  document.getElementById('result').textContent = '';
-  document.getElementById('next').style.display = 'none';
-  const q = questions[current];
-  document.getElementById('question').textContent = q.question;
-  const ul = document.getElementById('options');
-  ul.innerHTML = '';
-  q.options.forEach((opt, idx) => {
-    const li = document.createElement('li');
-    const btn = document.createElement('button');
-    btn.textContent = opt;
-    btn.onclick = () => selectAnswer(idx, btn);
-    btn.style.width = '100%';
-    btn.style.textAlign = 'left';
-    li.appendChild(btn);
-    ul.appendChild(li);
-  });
-  updateProgress();
-}
-
-function selectAnswer(idx, btn) {
-  const q = questions[current];
-  const ul = document.getElementById('options');
-  Array.from(ul.querySelectorAll('button')).forEach(b => b.disabled = true);
-  if (idx === q.answer) {
-    btn.style.background = '#4caf50';
-    correct++;
-  } else {
-    btn.style.background = '#f44336';
-    ul.children[q.answer].firstChild.style.background = '#4caf50';
-  }
-  document.getElementById('next').style.display = 'inline-block';
-}
-
-function nextQuestion() {
-  current++;
-  if (current < questions.length) {
-    showQuestion();
-  } else {
-    endQuiz();
-  }
-}
-
-function updateProgress() {
-  const progress = document.getElementById('progress');
-  progress.style.width = `${((current)/questions.length)*100}%`;
-}
-
-function startTimer() {
-  interval = setInterval(() => {
-    timer--;
-    const min = Math.floor(timer/60).toString().padStart(2, '0');
-    const sec = (timer%60).toString().padStart(2, '0');
-    document.getElementById('timer').textContent = `Tempo: ${min}:${sec}`;
-    if (timer <= 0) {
-      clearInterval(interval);
-      endQuiz();
-    }
-  }, 1000);
-}
-
-function endQuiz() {
-  clearInterval(interval);
-  document.getElementById('question').style.display = 'none';
-  document.getElementById('options').style.display = 'none';
-  document.getElementById('next').style.display = 'none';
-  document.getElementById('progress').style.width = '100%';
-  let msg = '';
-  if (correct === questions.length) msg = 'Excelente! Você acertou tudo!';
-  else if (correct >= questions.length * 0.8) msg = 'Muito bom! Você está preparado!';
-  else if (correct >= questions.length * 0.6) msg = 'Bom, mas pode melhorar!';
-  else msg = 'Continue praticando!';
-  document.getElementById('result').textContent = `Acertos: ${correct} de ${questions.length}. ${msg}`;
-}
-
-function startQuiz() {
-  questions = getRandomQuestions();
-  current = 0;
-  correct = 0;
-  timer = 300;
-  document.getElementById('question').style.display = '';
-  document.getElementById('options').style.display = '';
-  showQuestion();
-  startTimer();
-}
-
-document.getElementById('next').onclick = nextQuestion;
-window.onload = startQuiz;
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
