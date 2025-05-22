@@ -31,16 +31,22 @@ header {
   padding: 24px 16px 8px 16px;
 }
 
+/* Estilo padrão para a logo (desktop e tablets grandes) */
 .marist-logo {
-  width: 250px;
-  max-width: 80vw;
+  width: 250px;      /* tamanho padrão, ajuste conforme seu layout */
+  height: auto;
   display: block;
-  margin: 0 auto 12px auto;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 2px 8px #e0e0e0;
-  object-fit: contain;
+  margin: 0 auto 20px auto; /* centralizada, com espaço abaixo */
 }
+
+/* Aumenta a logo no mobile */
+@media (max-width: 768px) {
+  .marist-logo {
+    width: 220px;    /* aumente para o tamanho desejado, ex: 220px ou 80vw */
+    max-width: 90vw; /* garante que não ultrapasse a tela */
+    height: auto;
+    margin: 0 auto 20px auto;
+  }
 
 h1 {
   font-size: 1.4em;
