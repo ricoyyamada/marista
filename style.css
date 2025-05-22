@@ -34,7 +34,6 @@ header {
 /* Estilo padrão para a logo (desktop e tablets grandes) */
 .marist-logo {
   width: 180px;
-  width: 250px;
   max-width: 80vw;
   display: block;
   margin: 0 auto 12px auto;
@@ -44,14 +43,43 @@ header {
   object-fit: contain;
 }
 
-/* Aumenta a logo no mobile */
+/* Aumenta a logo no mobile até 768px */
 @media (max-width: 768px) {
   .marist-logo {
-    width: 440px;    /* aumente para o tamanho desejado, ex: 220px ou 80vw */
-    max-width: 90vw; /* garante que não ultrapasse a tela */
+    width: 250px;
+    max-width: 90vw;
     height: auto;
     margin: 0 auto 20px auto;
   }
+}
+
+/* Ajuste para telas bem pequenas (até 500px) */
+@media (max-width: 500px) {
+  .duo-container {
+    max-width: 98vw;
+    margin: 8px;
+    padding: 0 0 10px 0;
+    border-radius: 0;
+  }
+  main {
+    padding: 0 4vw;
+  }
+  h1 {
+    font-size: 1.1em;
+  }
+  .marist-logo {
+    width: 90px;
+    max-width: 90vw;
+    margin-bottom: 8px;
+  }
+  #progress-bar {
+    max-width: 90vw;
+    height: 14px;
+  }
+  #progress-text {
+    font-size: 0.93em;
+  }
+}
 
 h1 {
   font-size: 1.4em;
@@ -261,31 +289,4 @@ main {
   color: var(--duo-green);
   margin-top: 20px;
   text-align: center;
-}
-
-@media (max-width: 500px) {
-  .duo-container {
-    max-width: 98vw;
-    margin: 8px;
-    padding: 0 0 10px 0;
-    border-radius: 0;
-  }
-  main {
-    padding: 0 4vw;
-  }
-  h1 {
-    font-size: 1.1em;
-  }
-  .marist-logo {
-    width: 90px;
-    max-width: 90vw;
-    margin-bottom: 8px;
-  }
-  #progress-bar {
-    max-width: 90vw;
-    height: 14px;
-  }
-  #progress-text {
-    font-size: 0.93em;
-  }
 }
