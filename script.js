@@ -47,7 +47,7 @@ function getRandomQuestions(allQuestions, n) {
 }
 
 // Banco de 100 questões (exemplo: as 100 do seu projeto, aqui só as 1-20 e 43-100 para exemplo)
-var allQuestions = [[
+var allQuestions = [
   {
     question: '"O tempo voa." Qual figura de linguagem está presente?',
     options: ['Personificação', 'Antítese', 'Hipérbole', 'Metáfora', 'Eufemismo'],
@@ -548,7 +548,6 @@ var allQuestions = [[
     options: ['Metáfora', 'Hipérbole', 'Antítese', 'Sinestesia', 'Comparação'],
     answer: 4
   }
-
 ];
 
 var questions = []; // será preenchido ao iniciar o quiz
