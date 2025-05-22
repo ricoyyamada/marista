@@ -111,55 +111,57 @@ main {
   font-weight: 600;
 }
 
-/* Feedback destacado */
+/* Feedback motivacional */
 .feedback-acerto {
-  color: #2e7d32;
-  background: #e8f5e9;
+  color: #388e3c;
+  background: #e6f9ea;
+  border: 2px solid #58cc02;
   border-radius: 8px;
-  padding: 6px 12px;
-  margin-bottom: 8px;
+  padding: 8px 12px;
   display: inline-block;
-  animation: pulse-green 0.5s;
+  margin-bottom: 8px;
+  animation: pulse-green 0.6s;
 }
 
 .feedback-excelencia {
   color: #fff;
   background: linear-gradient(90deg, #58cc02 60%, #1cb0f6 100%);
+  border: 2px solid #1cb0f6;
   border-radius: 8px;
-  padding: 6px 16px;
+  padding: 8px 14px;
+  display: inline-block;
   margin-bottom: 8px;
   font-weight: bold;
-  display: inline-block;
-  box-shadow: 0 2px 8px #b6e5b6;
-  animation: pulse-blue 0.5s;
+  box-shadow: 0 2px 12px #b6e5b6;
+  animation: pulse-blue 0.7s;
 }
 
 .feedback-erro {
   color: #b71c1c;
   background: #ffebee;
+  border: 2px solid #ff4b4b;
   border-radius: 8px;
-  padding: 6px 12px;
-  margin-bottom: 8px;
+  padding: 8px 12px;
   display: inline-block;
-  animation: shake 0.4s;
+  margin-bottom: 8px;
+  animation: shake 0.5s;
 }
 
 @keyframes pulse-green {
   0% { box-shadow: 0 0 0 0 #58cc0240; }
-  70% { box-shadow: 0 0 0 10px #58cc0200; }
+  70% { box-shadow: 0 0 0 8px #58cc0200; }
   100% { box-shadow: 0 0 0 0 #58cc0200; }
 }
 @keyframes pulse-blue {
   0% { box-shadow: 0 0 0 0 #1cb0f640; }
-  70% { box-shadow: 0 0 0 10px #1cb0f600; }
+  70% { box-shadow: 0 0 0 12px #1cb0f600; }
   100% { box-shadow: 0 0 0 0 #1cb0f600; }
 }
 @keyframes shake {
   0% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
 
