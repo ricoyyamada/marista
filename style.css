@@ -33,7 +33,7 @@ header {
 
 /* Estilo padrão para a logo (desktop e tablets grandes) */
 .marist-logo {
-  width: 250px;      /* tamanho padrão, ajuste conforme seu layout */
+  width: 500px;      /* tamanho padrão, ajuste conforme seu layout */
   height: auto;
   display: block;
   margin: 0 auto 20px auto; /* centralizada, com espaço abaixo */
