@@ -42,7 +42,7 @@ header {
 /* Aumenta a logo no mobile */
 @media (max-width: 768px) {
   .marist-logo {
-    width: 220px;    /* aumente para o tamanho desejado, ex: 220px ou 80vw */
+    width: 440px;    /* aumente para o tamanho desejado, ex: 220px ou 80vw */
     max-width: 90vw; /* garante que não ultrapasse a tela */
     height: auto;
     margin: 0 auto 20px auto;
