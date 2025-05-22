@@ -351,8 +351,7 @@ var allQuestions = [
   }
 ];
 
-var questions = []; // será preenchido ao iniciar o quiz
-
+var questions = [];
 var currentQuestion = 0;
 var correctAnswers = 0;
 var selectedOption = null;
@@ -371,12 +370,10 @@ function updateProgressBar() {
   fill.style.width = percent + "%";
   text.textContent = "Pergunta " + (atual + 1 > total ? total : atual + 1) + " de " + total;
 }
-
 function showProgressBar() {
   document.getElementById("progress-bar-container").style.display = "block";
   updateProgressBar();
 }
-
 function hideProgressBar() {
   document.getElementById("progress-bar-container").style.display = "none";
 }
@@ -387,7 +384,6 @@ function formatTime(sec) {
   var s = sec % 60;
   return (min < 10 ? "0" : "") + min + ":" + (s < 10 ? "0" : "") + s;
 }
-
 function startTimer() {
   elapsedSeconds = 0;
   document.getElementById("timer").style.display = "block";
@@ -397,7 +393,6 @@ function startTimer() {
     document.getElementById("time").textContent = formatTime(elapsedSeconds);
   }, 1000);
 }
-
 function stopTimer() {
   clearInterval(timerInterval);
 }
@@ -412,7 +407,7 @@ function showStartScreen() {
   document.getElementById("timer").style.display = "none";
   document.getElementById("result").innerHTML = "";
   hideProgressBar();
-  let feedbackDiv = document.getElementById("feedback");
+  var feedbackDiv = document.getElementById("feedback");
   feedbackDiv.textContent = "";
   feedbackDiv.className = "";
 }
@@ -488,19 +483,16 @@ function checkAnswer() {
   var labels = document.querySelectorAll(".options label");
   var feedbackDiv = document.getElementById("feedback");
 
-  // Limpa classes anteriores
-  feedbackDiv.className = "";
-
   if (selectedOption === correctIdx) {
     labels[selectedOption].classList.add("selected");
     correctAnswers++;
     acertosSeguidos++;
     if (acertosSeguidos >= 3) {
       feedbackDiv.textContent = fraseAleatoria(frasesExcelencia);
-      feedbackDiv.classList.add("feedback-excelencia");
+      feedbackDiv.className = "feedback-excelencia";
     } else {
       feedbackDiv.textContent = fraseAleatoria(frasesAcerto);
-      feedbackDiv.classList.remove("feedback-excelencia", "feedback-erro");
+      feedbackDiv.className = "feedback-acerto";
     }
     setTimeout(function () {
       currentQuestion++;
@@ -510,7 +502,7 @@ function checkAnswer() {
     labels[selectedOption].classList.add("incorrect");
     labels[correctIdx].classList.add("selected");
     feedbackDiv.textContent = fraseAleatoria(frasesErro);
-    feedbackDiv.classList.add("feedback-erro");
+    feedbackDiv.className = "feedback-erro";
     acertosSeguidos = 0;
     setTimeout(function () {
       currentQuestion++;
@@ -586,7 +578,6 @@ function restartGame() {
   showStartScreen();
 }
 
-// Inicialização dos eventos
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("startBtn").onclick = startQuiz;
   document.getElementById("nextBtn").onclick = checkAnswer;
