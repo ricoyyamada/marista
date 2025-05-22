@@ -768,6 +768,17 @@ function quitQuiz() {
   feedbackDiv.className = "";
   hideProgressBar();
 
+// Event listener para o botão Desistir
+document.getElementById('quitBtn').addEventListener('click', function(e) {
+  const confirmar = confirm('Tem certeza que deseja desistir do quiz? Seu progresso será perdido.');
+  if (!confirmar) {
+    e.preventDefault();
+    return;
+  }
+  // Ação ao desistir
+  window.location.reload();
+});
+
   resultDiv.innerHTML =
     "<span style='color:#ff4b4b;'>Você desistiu do desafio.</span><br>" +
     "Acertos: <b>" + correctAnswers + "</b><br>" +
