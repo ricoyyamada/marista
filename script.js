@@ -351,7 +351,8 @@ var allQuestions = [
   }
 ];
 
-var questions = [];
+var questions = []; // será preenchido ao iniciar o quiz
+
 var currentQuestion = 0;
 var correctAnswers = 0;
 var selectedOption = null;
@@ -370,10 +371,12 @@ function updateProgressBar() {
   fill.style.width = percent + "%";
   text.textContent = "Pergunta " + (atual + 1 > total ? total : atual + 1) + " de " + total;
 }
+
 function showProgressBar() {
   document.getElementById("progress-bar-container").style.display = "block";
   updateProgressBar();
 }
+
 function hideProgressBar() {
   document.getElementById("progress-bar-container").style.display = "none";
 }
@@ -384,6 +387,7 @@ function formatTime(sec) {
   var s = sec % 60;
   return (min < 10 ? "0" : "") + min + ":" + (s < 10 ? "0" : "") + s;
 }
+
 function startTimer() {
   elapsedSeconds = 0;
   document.getElementById("timer").style.display = "block";
@@ -393,6 +397,7 @@ function startTimer() {
     document.getElementById("time").textContent = formatTime(elapsedSeconds);
   }, 1000);
 }
+
 function stopTimer() {
   clearInterval(timerInterval);
 }
@@ -488,11 +493,11 @@ function checkAnswer() {
     correctAnswers++;
     acertosSeguidos++;
     if (acertosSeguidos >= 3) {
-      feedbackDiv.textContent = fraseAleatoria(frasesExcelencia);
       feedbackDiv.className = "feedback-excelencia";
+      feedbackDiv.textContent = fraseAleatoria(frasesExcelencia);
     } else {
-      feedbackDiv.textContent = fraseAleatoria(frasesAcerto);
       feedbackDiv.className = "feedback-acerto";
+      feedbackDiv.textContent = fraseAleatoria(frasesAcerto);
     }
     setTimeout(function () {
       currentQuestion++;
@@ -501,8 +506,8 @@ function checkAnswer() {
   } else {
     labels[selectedOption].classList.add("incorrect");
     labels[correctIdx].classList.add("selected");
-    feedbackDiv.textContent = fraseAleatoria(frasesErro);
     feedbackDiv.className = "feedback-erro";
+    feedbackDiv.textContent = fraseAleatoria(frasesErro);
     acertosSeguidos = 0;
     setTimeout(function () {
       currentQuestion++;
@@ -578,6 +583,7 @@ function restartGame() {
   showStartScreen();
 }
 
+// Inicialização dos eventos
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("startBtn").onclick = startQuiz;
   document.getElementById("nextBtn").onclick = checkAnswer;
