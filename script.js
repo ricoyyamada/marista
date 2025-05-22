@@ -412,7 +412,9 @@ function showStartScreen() {
   document.getElementById("timer").style.display = "none";
   document.getElementById("result").innerHTML = "";
   hideProgressBar();
-  document.getElementById("feedback").textContent = "";
+  let feedbackDiv = document.getElementById("feedback");
+  feedbackDiv.textContent = "";
+  feedbackDiv.className = "";
 }
 
 function startQuiz() {
@@ -436,6 +438,7 @@ function showQuestion() {
   var feedbackDiv = document.getElementById("feedback");
   resultDiv.textContent = "";
   feedbackDiv.textContent = "";
+  feedbackDiv.className = "";
   selectedOption = null;
   document.getElementById("quitBtn").style.display = "inline-block";
   updateProgressBar();
@@ -485,14 +488,19 @@ function checkAnswer() {
   var labels = document.querySelectorAll(".options label");
   var feedbackDiv = document.getElementById("feedback");
 
+  // Limpa classes anteriores
+  feedbackDiv.className = "";
+
   if (selectedOption === correctIdx) {
     labels[selectedOption].classList.add("selected");
     correctAnswers++;
     acertosSeguidos++;
     if (acertosSeguidos >= 3) {
       feedbackDiv.textContent = fraseAleatoria(frasesExcelencia);
+      feedbackDiv.classList.add("feedback-excelencia");
     } else {
       feedbackDiv.textContent = fraseAleatoria(frasesAcerto);
+      feedbackDiv.classList.remove("feedback-excelencia", "feedback-erro");
     }
     setTimeout(function () {
       currentQuestion++;
@@ -502,6 +510,7 @@ function checkAnswer() {
     labels[selectedOption].classList.add("incorrect");
     labels[correctIdx].classList.add("selected");
     feedbackDiv.textContent = fraseAleatoria(frasesErro);
+    feedbackDiv.classList.add("feedback-erro");
     acertosSeguidos = 0;
     setTimeout(function () {
       currentQuestion++;
@@ -522,6 +531,7 @@ function showResult() {
   nextBtn.style.display = "none";
   quitBtn.style.display = "none";
   feedbackDiv.textContent = "";
+  feedbackDiv.className = "";
   stopTimer();
   hideProgressBar();
   var tempo = formatTime(elapsedSeconds);
@@ -559,6 +569,7 @@ function quitQuiz() {
   nextBtn.style.display = "none";
   quitBtn.style.display = "none";
   feedbackDiv.textContent = "";
+  feedbackDiv.className = "";
   hideProgressBar();
 
   resultDiv.innerHTML =
