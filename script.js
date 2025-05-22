@@ -147,8 +147,7 @@ var allQuestions = [[
     question: '"O perfume doce da música embalava o ambiente." Qual figura de linguagem foi empregada?',
     options: ['Metáfora', 'Hipérbole', 'Personificação', 'Catacrese', 'Sinestesia'],
     answer: 4
-  }
-[
+  },
   {
     question: '"O silêncio gritava naquela sala." Qual figura de linguagem está presente?',
     options: ['Personificação', 'Hipérbole', 'Metáfora', 'Antítese', 'Eufemismo'],
@@ -348,8 +347,7 @@ var allQuestions = [[
     question: '"Ela explodiu de alegria." Qual figura de linguagem foi usada?',
     options: ['Antítese', 'Metáfora', 'Sinestesia', 'Ironia', 'Hipérbole'],
     answer: 4
-  }
-[
+  },
   {
     question: '"O céu chorava aquela noite." Qual figura de linguagem está presente?',
     options: ['Personificação', 'Metáfora', 'Catacrese', 'Hipérbole', 'Antítese'],
